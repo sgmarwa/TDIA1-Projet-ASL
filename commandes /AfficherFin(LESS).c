@@ -8,21 +8,21 @@ void display_file(const char *filename);
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
-        exit(EXIT_FAILURE);
+        exit(ECHEC);
     }
 
     const char *filename = argv[1];
 
     display_file(filename);
 
-    return EXIT_SUCCESS;
+    return SUCCESS;
 }
 
 void display_file(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
-        exit(EXIT_FAILURE);
+        exit(ECHEC);
     }
 
     int c;
