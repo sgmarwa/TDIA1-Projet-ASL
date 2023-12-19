@@ -3,7 +3,7 @@
 #include <string.h>
 #include <regex.h>
 
-void my_grep(const char *pattern, const char *filename);
+void trouver(const char *pattern, const char *filename);
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
@@ -14,12 +14,12 @@ int main(int argc, char *argv[]) {
     const char *pattern = argv[1];
     const char *filename = argv[2];
 
-    my_grep(pattern, filename);
+    trouver(pattern, filename);
 
     return EXIT_SUCCESS;
 }
 
-void my_grep(const char *pattern, const char *filename) {
+void trouver(const char *pattern, const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
