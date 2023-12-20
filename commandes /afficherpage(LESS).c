@@ -7,7 +7,7 @@ void affichepage(const char *nom_fichier);
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        fprintf(stderr, "Utilisation : %s <nom_fichier>\n", argv[0]);
+        fprintf(stderr, "la formule correcte est  : %s <nom_fichier>\n", argv[0]);
         exit(ECHEC);
     }
 
