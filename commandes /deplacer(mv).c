@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 
     if (rename(source, destination) != 0) {
         perror("Erreur lors du déplacement du fichier");
-        exit(EXIT_FAILURE);
+        exit(ECHEC);
     }
 
     printf("Déplacement réussi de %s vers %s\n", source, destination);
