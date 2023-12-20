@@ -7,8 +7,8 @@ void trouver(const char *pattern, const char *filename);
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s <pattern> <filename>\n", argv[0]);
-        exit(EXIT_FAILURE);
+        fprintf(stderr, "la formule correcte est : %s <pattern> <filename>\n", argv[0]);
+        exit(ECHEC);
     }
 
     const char *pattern = argv[1];
@@ -16,14 +16,14 @@ int main(int argc, char *argv[]) {
 
     trouver(pattern, filename);
 
-    return EXIT_SUCCESS;
+    return SUCCES;
 }
 
 void trouver(const char *pattern, const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
-        exit(EXIT_FAILURE);
+        exit(ECHEC);
     }
 
     regex_t regex;
@@ -35,7 +35,7 @@ void trouver(const char *pattern, const char *filename) {
         char error_message[100];
         regerror(ret, &regex, error_message, sizeof(error_message));
         fprintf(stderr, "Erreur lors de la compilation du motif : %s\n", error_message);
-        exit(EXIT_FAILURE);
+        exit(ECHEC);
     }
 
     char line[256];
