@@ -5,4 +5,5 @@ Réalisé par :\
 **- ACHBAB Mohammed**\
 **- BADAOUI Soukaina**\
 **- MOURINOU Mohamed**\
-**- SGHIR Marwa**
+**- SGHIR Marwa**\
+**- ELHAJJIOUI Chaymae**
