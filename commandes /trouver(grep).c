@@ -3,11 +3,14 @@
 #include <string.h>
 #include <regex.h>
 
+#define ECHEC 1
+#define SUCES 0
+
 void trouver(const char *pattern, const char *filename);
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
-        fprintf(stderr, "la formule correcte est : %s <pattern> <filename>\n", argv[0]);
+        fprintf(stderr, "La formule correcte est : %s <pattern> <filename>\n", argv[0]);
         exit(ECHEC);
     }
 
@@ -16,7 +19,7 @@ int main(int argc, char *argv[]) {
 
     trouver(pattern, filename);
 
-    return SUCCES;
+    return SUCES;
 }
 
 void trouver(const char *pattern, const char *filename) {
