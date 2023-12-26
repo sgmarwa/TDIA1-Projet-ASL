@@ -1,51 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define SUCCES 0
 #define ECHEC 1
-#define TAILLE_BUFFER 1024
 
 int remplacerMotif(const char *nomFichier, const char *motifRecherche, const char *motifRemplacement) {
-    FILE *fichier = fopen(nomFichier, "r");
+    // Construction de la commande sed
+    char commande[1024];
+    sprintf(commande, "sed -i 's/%s/%s/g' %s", motifRecherche, motifRemplacement, nomFichier);
 
-    if (fichier == NULL) {
-        perror("Erreur lors de l'ouverture du fichier");
+    // Exécution de la commande
+    int resultat = system(commande);
+
+    if (resultat == -1) {
+        perror("Erreur lors de l'exécution de la commande sed");
         return ECHEC;
     }
-
-    char ligne[TAILLE_BUFFER];
-    char *nouvelleLigne;
-    size_t tailleMotifRecherche = strlen(motifRecherche);
-    size_t tailleMotifRemplacement = strlen(motifRemplacement);
-
-    FILE *fichierTemporaire = tmpfile();  // Créer un fichier temporaire
-
-    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
-        char *occurrence = ligne;
-        char *temp;
-
-        while ((occurrence = strstr(occurrence, motifRecherche)) != NULL) {
-            temp = occurrence;  // Utiliser un pointeur temporaire
-            fwrite(ligne, 1, occurrence - ligne, fichierTemporaire);
-            fwrite(motifRemplacement, 1, tailleMotifRemplacement, fichierTemporaire);
-            occurrence += tailleMotifRecherche;
-            // Copier le reste de la ligne dans le tableau "ligne"
-            memcpy(ligne, occurrence, strlen(occurrence) + 1);
-        }
-
-        fwrite(temp, 1, strlen(temp), fichierTemporaire);
-    }
-
-    fseek(fichierTemporaire, 0, SEEK_SET);
-    fseek(fichier, 0, SEEK_SET);
-
-    while (fgets(ligne, sizeof(ligne), fichierTemporaire) != NULL) {
-        fputs(ligne, fichier);
-    }
-
-    fclose(fichier);
-    fclose(fichierTemporaire);
 
     return SUCCES;
 }
@@ -70,4 +40,3 @@ int main(int argc, char *argv[]) {
 
     return resultat;
 }
-
