@@ -8,6 +8,7 @@
 
 int remplacerMotif(const char *nomFichier, const char *motifRecherche, const char *motifRemplacement) {
     FILE *fichier = fopen(nomFichier, "r");
+
     if (fichier == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return ECHEC;
@@ -22,13 +23,18 @@ int remplacerMotif(const char *nomFichier, const char *motifRecherche, const cha
 
     while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
         char *occurrence = ligne;
+        char *temp;
+
         while ((occurrence = strstr(occurrence, motifRecherche)) != NULL) {
+            temp = occurrence;  // Utiliser un pointeur temporaire
             fwrite(ligne, 1, occurrence - ligne, fichierTemporaire);
             fwrite(motifRemplacement, 1, tailleMotifRemplacement, fichierTemporaire);
             occurrence += tailleMotifRecherche;
-            ligne = occurrence;
+            // Copier le reste de la ligne dans le tableau "ligne"
+            memcpy(ligne, occurrence, strlen(occurrence) + 1);
         }
-        fwrite(ligne, 1, strlen(ligne), fichierTemporaire);
+
+        fwrite(temp, 1, strlen(temp), fichierTemporaire);
     }
 
     fseek(fichierTemporaire, 0, SEEK_SET);
@@ -64,3 +70,4 @@ int main(int argc, char *argv[]) {
 
     return resultat;
 }
+
