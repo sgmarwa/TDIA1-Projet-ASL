@@ -2,9 +2,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#define ECHEC 1
+#define SUCCES 0
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
-        fprintf(stderr, "la formule correcte est : %s <source> <destination>\n", argv[0]);
+        fprintf(stderr, "La formule correcte est : %s <source> <destination>\n", argv[0]);
         exit(ECHEC);
     }
 
@@ -20,3 +23,4 @@ int main(int argc, char *argv[]) {
 
     return SUCCES;
 }
+
