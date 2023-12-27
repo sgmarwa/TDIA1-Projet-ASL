@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "loggin.h"
 #define TAILLE_PAGE 20
 
 #define ECHEC 1
@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
 void affichepage(const char *nom_fichier) {
     FILE *fichier = fopen(nom_fichier, "r");
     if (fichier == NULL) {
+        logMessage2("DEBUG","utilisation du commande <afficherpage>: fichier non trouvé",usr us );
         perror("Erreur lors de l'ouverture du fichier");
         exit(ECHEC);
     }
@@ -49,7 +50,7 @@ void affichepage(const char *nom_fichier) {
             }
         }
     }
-
+logMessage2("DEBUG","utilisation du commande <afficherpage>",usr us );
     fclose(fichier);
 }
 
