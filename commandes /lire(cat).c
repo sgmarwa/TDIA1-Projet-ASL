@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "loggin.h"
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <nom_du_fichier>\n", argv[0]);
@@ -12,6 +12,7 @@ int main(int argc, char *argv[]) {
 
     if (fichier == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
+        logMessage2("DEBUG","utilisation du commande <lire>: fichier non trouvé",usr us );
         return EXIT_FAILURE;
     }
 
@@ -19,7 +20,7 @@ int main(int argc, char *argv[]) {
     while ((caractere = fgetc(fichier)) != EOF) {
         putchar(caractere);
     }
-
+logMessage2("DEBUG","utilisation du commande <lire>",usr us );
     fclose(fichier);
     return EXIT_SUCCESS;
 }
