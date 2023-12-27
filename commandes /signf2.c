@@ -133,6 +133,8 @@ char partie_gauche[300];
         rename(chemin_vers_fichier_Temp, chemin_vers_fichier_Users);
         printf("Utilisateur supprimé avec succès.\n");
 	logMessage("INFO","suppression réussite ",utilisateur);
+	logMessage("INFO","répertoire personnelle supprimé avec succés ",utilisateur);
+
 
     } else {
 printf("erreur le nom utilisateur n'existe pas\n");
@@ -178,6 +180,7 @@ fclose(f3);
     printf("Utilisateur ajouté avec succès.\n");
 //jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
 	    logMessage("INFO","ajout avec succés ",utilisateur);
+	    logMessage("INFO","répertoire personnelle crée avec succés ",utilisateur);
 	char chemin_vers_repertoire_home2[PATH_MAX];
 
 	construireCheminAbsoluRepHome2(chemin_vers_repertoire_home2);	
