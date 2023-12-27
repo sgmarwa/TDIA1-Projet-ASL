@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "loggin.h"
 int main(int argc, char *argv[]) {
     FILE *source_file, *destination_file;
     char ch;
@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
     // Ouvre le fichier source en lecture
     source_file = fopen(argv[1], "r");
     if (source_file == NULL) {
+ logMessage2("DEBUG","utilisation du commande <copy>: fichier non trouvé",usr us );
         printf("Impossible d'ouvrir le fichier source '%s'\n", argv[1]);
         return 1;
     }
@@ -36,5 +37,6 @@ int main(int argc, char *argv[]) {
     fclose(destination_file);
 
     printf("Le fichier '%s' a été copié vers '%s'\n", argv[1], argv[2]);
+     logMessage2("DEBUG","utilisation du commande <copy>: ",usr us );
     return 0;
 }
