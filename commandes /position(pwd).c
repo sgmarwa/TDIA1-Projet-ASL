@@ -2,7 +2,8 @@
 #include <unistd.h>
 #include "loggin.h"
 #include "usr.h"
-char utilisateur[50];
+int main() {
+    char utilisateur[50];
 FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
@@ -10,7 +11,6 @@ FILE *f3 = fopen("connecteur.txt", "r");
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
 fclose(f3);
-int main() {
     char cwd[1024];
     
     if (getcwd(cwd, sizeof(cwd)) != NULL) {
