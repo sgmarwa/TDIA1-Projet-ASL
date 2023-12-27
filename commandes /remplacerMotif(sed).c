@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "loggin.h"
 #define SUCCES 0
 #define ECHEC 1
 
@@ -8,7 +8,7 @@ int remplacerMotif(const char *nomFichier, const char *motifRecherche, const cha
     // Construction de la commande sed
     char commande[1024];
     sprintf(commande, "sed -i 's/%s/%s/g' %s", motifRecherche, motifRemplacement, nomFichier);
-
+    logMessage2("DEBUG","utilisation du commande <remplacerMotif>",usr us );
     // Exécution de la commande
     int resultat = system(commande);
 
