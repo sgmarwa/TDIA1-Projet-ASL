@@ -4,6 +4,8 @@
 #include <time.h>
 #include "usr.h"
 char utilisateur[50];
+// Fonction de journalisation
+void logMessage(const char *type,const char *message,char *uti) {
 FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
@@ -11,9 +13,6 @@ FILE *f3 = fopen("connecteur.txt", "r");
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
 fclose(f3);
-int notificationCounter = 0;
-// Fonction de journalisation
-void logMessage(const char *type,const char *message,char *uti) {
 // Ouvrir le fichier en mode lecture
     FILE *fichier = fopen("logfile.txt", "r");
 
@@ -50,13 +49,20 @@ nombreLignes++;
     strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", timeinfo);
 
     // Écrire le message dans le fichier journal
-    notificationCounter++;
     fprintf(logFile, "[%d] %s :system: [%s] :%s%s\n", nombreLignes,type,timestamp,uti,message);
     // Fermer le fichier journal
     fclose(logFile);
 }
 void logMessage2(const char *type,const char *message,char *uti ) {
 // Ouvrir le fichier en mode lecture
+FILE *f3 = fopen("connecteur.txt", "r");
+    if (f3 == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return 1;
+    }
+fgets(utilisateur, sizeof(utilisateur), f3);
+fclose(f3);
+
     FILE *fichier = fopen("logfile.txt", "r");
 
     // Vérifier si le fichier est ouvert avec succès
@@ -96,4 +102,5 @@ nombreLignes++;
     // Fermer le fichier journal
     fclose(logFile);
 }
+
 
