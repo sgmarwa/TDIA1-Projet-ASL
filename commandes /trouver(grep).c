@@ -7,12 +7,6 @@
 #define ECHEC 1
 #define SUCES 0
 char utilisateur[50];
-FILE *f3 = fopen("connecteur.txt", "r");
-    if (f3 == NULL) {
-        perror("Erreur lors de l'ouverture du fichier");
-        return 1;
-    }
-fgets(utilisateur, sizeof(utilisateur),f3);
 void trouver(const char *pattern, const char *filename);
 
 int main(int argc, char *argv[]) {
@@ -30,6 +24,12 @@ int main(int argc, char *argv[]) {
 }
 
 void trouver(const char *pattern, const char *filename) {
+    FILE *f3 = fopen("connecteur.txt", "r");
+    if (f3 == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return 1;
+    }
+fgets(utilisateur, sizeof(utilisateur),f3);
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         logMessage2("DEBUG","utilisation du commande <trouver>: fichier non trouvé",utilisateur );
