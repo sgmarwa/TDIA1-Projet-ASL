@@ -8,7 +8,7 @@ typedef struct {
     char nom_uti[100];
     char mot_de_passe[100];
 } usr;
-
+ char utilisateur [50];
 // Fonction pour hacher le mot de passe et l'ajouter dans le fichier
 void hashPassword(usr us) {
     FILE *fb = fopen("user.txt", "a+");
@@ -74,6 +74,7 @@ int hashPassword1(usr us, char *m_passe) {
 
 // Fonction pour supprimer un utilisateur
 void supprimerUtilisateur(usr us) {
+strcpy(utilisateur, us.nom_uti);
     FILE *f = fopen("user.txt", "r");
     if (f == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
@@ -91,7 +92,7 @@ void supprimerUtilisateur(usr us) {
 
     char ligne[200];
     char mot_passe[300];
-char partie_gauche[300];
+    char partie_gauche[300];
     while (fgets(ligne, sizeof(ligne), f) != NULL) {
         if (sscanf(ligne, "%[^:]:%s", partie_gauche, mot_passe) == 2) {
             if (strcmp(us.nom_uti, partie_gauche) == 0) {
@@ -99,7 +100,7 @@ char partie_gauche[300];
 
                 if (!mot_de_passe_correct) {
                     printf("Mot de passe erroné.\n");
-                    logMessage("ERROR","erreur dans la suppression -->mot de passe erroné ",us);
+                    logMessage("ERROR","erreur dans la suppression -->mot de passe erroné ",utilisateur);
                     fclose(f);
                     fclose(temp);
                     remove("temp.txt");
@@ -118,16 +119,17 @@ char partie_gauche[300];
         remove("user.txt");
         rename("temp.txt", "user.txt");
         printf("Utilisateur supprimé avec succès.\n");
-        logMessage("INFO","suppression réussite ",us);
+        logMessage("INFO","suppression réussite ",utilisateur);
     } else {
 printf("erreur le nom utilisateur n'existe pas\n");
-logMessage("ERROR","erreur dans la suppression -->nom d'utilisateur n'existe pas ",us);
+logMessage("ERROR","erreur dans la suppression -->nom d'utilisateur n'existe pas ",utilisateur);
         remove("temp.txt");
     }
 }
 
 // Fonction pour ajouter un nouvel utilisateur
 void ajouterUtilisateur(usr us) {
+strcpy(utilisateur, us.nom_uti);
     FILE *f = fopen("user.txt", "r");
     if (f == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
@@ -141,7 +143,7 @@ void ajouterUtilisateur(usr us) {
         if (sscanf(ligne, "%[^:]", partie_gauche) == 1) {
             if (strcmp(us.nom_uti, partie_gauche) == 0) {
                 printf("L'utilisateur existe déjà.\n");
-                logMessage("ERROR","erreur dans l'ajout -->utilisateur déja existe ",us);
+                logMessage("ERROR","erreur dans l'ajout -->utilisateur déja existe ",utilisateur);
                 fclose(f);
                 return;
             }
@@ -151,7 +153,7 @@ void ajouterUtilisateur(usr us) {
     fclose(f);
     hashPassword(us);
     printf("Utilisateur ajouté avec succès.\n");
-    logMessage("INFO","ajout avec succés ",us);
+    logMessage("INFO","ajout avec succés ",utilisateur);
 }
 
 int main(int argc, char *argv[]) {
@@ -162,7 +164,6 @@ int main(int argc, char *argv[]) {
 
     if (!strcmp(argv[1], "-u")) {
         usr us;
-
         printf("Veuillez saisir votre nom utilisateur : ");
         scanf("%s", us.nom_uti);
 
