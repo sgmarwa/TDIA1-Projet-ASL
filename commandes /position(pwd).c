@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "loggin.h"
+#include "usr.h"
 int main() {
     char cwd[1024];
     
