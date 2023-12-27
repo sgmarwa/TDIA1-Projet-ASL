@@ -7,6 +7,7 @@
 #include "connect.h"
 #include "chdf.h"
 #include "user.h"
+#include "loggin.h"
 #define TAILLE_MAX 100
 #define TAILLE_MAX2 100
 void listadmin(usr *u,char *fichier_users) {
@@ -24,6 +25,14 @@ void listadmin(usr *u,char *fichier_users) {
     fclose(fichier);
  }
 int permission(const char *chemin_utilisateur){
+	char utilisateur[50];
+	FILE *f3 = fopen("connecteur.txt", "r");
+    if (f3 == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return 1;
+    }
+fgets(utilisateur, sizeof(utilisateur), f3);
+fclose(f3);
 //	const char *chemin_utilisateur = argv[1];
 	char chemin_absolu[PATH_MAX];
 	usr admin;
@@ -64,6 +73,7 @@ int permission(const char *chemin_utilisateur){
 		else{
 			//printf("Le chemin %s ne passe pas par le répertoire de l'user connecté %s ni par le repertoir du groupe.\n", chemin_absolu, in.user);//--------------verif
 			fprintf(stderr, "permition denied\n");	
+					logMessage("ERROR","impossible d'accéder au ce répertoire :permession denied ",utilisateur);
 			return 0;//n'a pas la permission d'executer la commande
 		}
 		}else{//nbr_de_mot==2(juste l'home2)
@@ -104,7 +114,8 @@ int permission(const char *chemin_utilisateur){
 		}
 			 break;
 		case 'n':{
-				fprintf(stderr, "permition denied\n");                                
+				fprintf(stderr, "permition denied\n");  
+					logMessage("ERROR","permession non autorisé",utilisateur);
 				return 0;
 		}
 			 break;
