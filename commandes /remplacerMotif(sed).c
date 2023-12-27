@@ -5,14 +5,14 @@
 #define SUCCES 0
 #define ECHEC 1
 char utilisateur[50];
-FILE *f3 = fopen("connecteur.txt", "r");
+int remplacerMotif(const char *nomFichier, const char *motifRecherche, const char *motifRemplacement) {
+    FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
 fclose(f3);
-int remplacerMotif(const char *nomFichier, const char *motifRecherche, const char *motifRemplacement) {
     // Construction de la commande sed
     char commande[1024];
     sprintf(commande, "sed -i 's/%s/%s/g' %s", motifRecherche, motifRemplacement, nomFichier);
