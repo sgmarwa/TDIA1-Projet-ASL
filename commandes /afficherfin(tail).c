@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "loggin.h"
+#include "usr.h"
 int main(int argc, char *argv[]) {
     // Vérifier le nombre d'arguments
     if (argc < 2 || argc > 3) {
