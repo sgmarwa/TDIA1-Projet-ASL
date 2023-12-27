@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "loggin.h"
+#include "usr.h"
 int main(int argc, char *argv[]) {
     FILE *source_file, *destination_file;
     char ch;
