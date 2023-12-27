@@ -4,7 +4,7 @@
 #include <dirent.h>
 #include <string.h>
 #include <sys/ioctl.h>
-
+#include "loggin.h"
 #define COLOR_RESET "\033[0m"
 #define COLOR_BLUE  "\033[34m"
 #define COLOR_GREEN "\033[32m"
@@ -12,6 +12,7 @@
 void list_directory(const char *path) {
     DIR *dir = opendir(path);
     if (dir == NULL) {
+        logMessage2("DEBUG","utilisation du commande <lister>: fichier non trouvé",usr us );
         perror("Impossible d'ouvrir le répertoire");
         return;
     }
@@ -60,7 +61,7 @@ void list_directory(const char *path) {
     if (count != 0) {
         printf("\n");
     }
-
+logMessage1("DEBUG","utilisation du commande <lister>",usr us );
     closedir(dir);
 }
 
