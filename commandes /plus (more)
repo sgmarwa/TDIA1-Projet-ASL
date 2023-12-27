@@ -1,11 +1,11 @@
 #include <stdio.h>
-
+#include "loggin.h"
 #define PAGE_SIZE 20 // Nombre de lignes par page
 
 void mymore(FILE *fp) {
     int line_count = 0;
     char ch;
-
+    logMessage2("DEBUG","utilisation du commande <plus>",usr us );
     while ((ch = fgetc(fp)) != EOF) {
         putchar(ch);
 
