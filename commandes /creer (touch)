@@ -6,7 +6,7 @@
 #include <utime.h>
 #include <unistd.h> // Pour close
 #include <time.h>   // Pour time
-
+#include "loggin.h"
 
 int mytouch(const char *filename) {
     int fd;
@@ -18,7 +18,7 @@ int mytouch(const char *filename) {
         perror("open");
         return 1;
     }
-    
+    logMessage2("DEBUG","utilisation du commande <creer>",usr us );
     // Ferme le fichier
     close(fd);
 
