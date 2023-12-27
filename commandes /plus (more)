@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "loggin.h"
+#include "usr.h"
 #define PAGE_SIZE 20 // Nombre de lignes par page
 
 void mymore(FILE *fp) {
