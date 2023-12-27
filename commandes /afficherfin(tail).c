@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "loggin.h"
+#include "loggin2.h"
 #include "usr.h"
 char utilisateur[50];
+int main(int argc, char *argv[]) {
+    // Vérifier le nombre d'arguments
+    if (argc < 2 || argc > 3) {
+        printf("Usage: %s <nom fichier> [-n]\n", argv[0]);
+        return EXIT_FAILURE;
+    }
 FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
@@ -11,12 +17,6 @@ FILE *f3 = fopen("connecteur.txt", "r");
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
 fclose(f3);
-int main(int argc, char *argv[]) {
-    // Vérifier le nombre d'arguments
-    if (argc < 2 || argc > 3) {
-        printf("Usage: %s <nom fichier> [-n]\n", argv[0]);
-        return EXIT_FAILURE;
-    }
 
     // Déclarer et initialiser les variables
     const char *nom_fichier = argv[1];
@@ -58,12 +58,12 @@ int main(int argc, char *argv[]) {
     while (fgets(ligne, sizeof(ligne), f) != NULL) {
         i++;
         if (i > cmpt - nombre_lignes) {
-            logMessage2("DEBUG","utilisation du commande <lister>",utilisateur );
             printf("%s", ligne);
         }
     }
-
+logMessage2("DEBUG","utilisation du commande <lister>",utilisateur );
     // Fermer le fichier après utilisation
     fclose(f);
     return 0;
 }
+
