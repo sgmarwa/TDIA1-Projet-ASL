@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include "loggin.h"
 #define SUCCES 0
 #define ECHEC 1
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
     fclose(fichier1);
     fclose(fichier2);
     fclose(fichierSortie);
-
+    logMessage2("DEBUG","utilisation du commande <fusionner>: fichier non trouvé",usr us );
     printf("Fusion réussie de %s et %s vers %s\n", source1, source2, destination);
 
     return SUCCES;
