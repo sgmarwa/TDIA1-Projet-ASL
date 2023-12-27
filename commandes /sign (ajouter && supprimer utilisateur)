@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <openssl/sha.h>
-
+#include "loggin.h"
 // Structure pour stocker les informations de l'utilisateur
 typedef struct {
     char nom_uti[100];
@@ -99,6 +99,7 @@ char partie_gauche[300];
 
                 if (!mot_de_passe_correct) {
                     printf("Mot de passe erroné.\n");
+                    logMessage("ERROR","erreur dans la suppression -->mot de passe erroné ",us);
                     fclose(f);
                     fclose(temp);
                     remove("temp.txt");
@@ -117,8 +118,10 @@ char partie_gauche[300];
         remove("user.txt");
         rename("temp.txt", "user.txt");
         printf("Utilisateur supprimé avec succès.\n");
+        logMessage("INFO","suppression réussite ",us);
     } else {
 printf("erreur le nom utilisateur n'existe pas\n");
+logMessage("ERROR","erreur dans la suppression -->nom d'utilisateur n'existe pas ",us);
         remove("temp.txt");
     }
 }
@@ -138,6 +141,7 @@ void ajouterUtilisateur(usr us) {
         if (sscanf(ligne, "%[^:]", partie_gauche) == 1) {
             if (strcmp(us.nom_uti, partie_gauche) == 0) {
                 printf("L'utilisateur existe déjà.\n");
+                logMessage("ERROR","erreur dans l'ajout -->utilisateur déja existe ",us);
                 fclose(f);
                 return;
             }
@@ -147,6 +151,7 @@ void ajouterUtilisateur(usr us) {
     fclose(f);
     hashPassword(us);
     printf("Utilisateur ajouté avec succès.\n");
+    logMessage("INFO","ajout avec succés ",us);
 }
 
 int main(int argc, char *argv[]) {
