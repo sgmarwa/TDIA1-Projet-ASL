@@ -10,7 +10,7 @@ FILE *f3 = fopen("connecteur.txt", "r");
         return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
-
+fclose(f3);
 int main(int argc, char *argv[]) {
     // Vérifier le nombre d'arguments
     if (argc < 2 || argc > 3) {
@@ -65,6 +65,5 @@ int main(int argc, char *argv[]) {
 
     // Fermer le fichier après utilisation
     fclose(f);
-    fclose(f3);
     return 0;
 }
