@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "loggin2.h"
+#include "loggin.h"
 #include "usr.h"
 char utilisateur[50];
 int main(int argc, char *argv[]) {
