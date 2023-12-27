@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "loggin.h"
+#include "usr.h"
 #define TAILLE_PAGE 20
 
 #define ECHEC 1
