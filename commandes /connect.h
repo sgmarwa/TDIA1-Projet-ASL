@@ -22,6 +22,12 @@ int hashPassword1(usr us, char *m_passe) {
 }
 
 int connecter(usr us) {
+FILE *f1 = fopen("connecteur.txt", "w");
+    if (f1 == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return 0;
+    }
+
     FILE *f = fopen("user.txt", "r");
     if (f == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
@@ -38,6 +44,8 @@ int connecter(usr us) {
                 if (hashPassword1(us, mot_passe)) {
                     fclose(f);
 logMessage("INFO","authentification réussite ",us);
+fprintf(f1,"%s",us.nom_uti);
+fclose(f1);
                     return 1;
                 } else {
                     fclose(f);
@@ -53,3 +61,4 @@ logMessage("ERROR","FAILED TO CONNECT -->mot de passe erroné",us);
 logMessage("ERROR","FAILED TO CONNECT -->nom utilisateur n'existe pas ",us);
     return 0;
 }
+
