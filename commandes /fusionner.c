@@ -5,7 +5,14 @@
 #include "usr.h"
 #define SUCCES 0
 #define ECHEC 1
-
+char utilisateur[50];
+FILE *f3 = fopen("connecteur.txt", "r");
+    if (fichier == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return 1;
+    }
+fgets(utilisateur, sizeof(utilisateur), f3);
+fclose(f3);
 int main(int argc, char *argv[]) {
     if (argc != 4) {
         fprintf(stderr, "La formule correcte est : %s <source1> <source2> <destination>\n", argv[0]);
@@ -54,7 +61,7 @@ int main(int argc, char *argv[]) {
     fclose(fichier1);
     fclose(fichier2);
     fclose(fichierSortie);
-    logMessage2("DEBUG","utilisation du commande <fusionner>: fichier non trouvé",usr us );
+    logMessage2("DEBUG","utilisation du commande <fusionner>: fichier non trouvé",utilisateur);
     printf("Fusion réussie de %s et %s vers %s\n", source1, source2, destination);
 
     return SUCCES;
