@@ -3,6 +3,7 @@
 #include <string.h>
 #include <regex.h>
 #include "loggin.h"
+#include "usr.h"
 #define ECHEC 1
 #define SUCES 0
 
