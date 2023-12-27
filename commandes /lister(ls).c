@@ -5,6 +5,7 @@
 #include <string.h>
 #include <sys/ioctl.h>
 #include "loggin.h"
+#include "usr.h"
 #define COLOR_RESET "\033[0m"
 #define COLOR_BLUE  "\033[34m"
 #define COLOR_GREEN "\033[32m"
