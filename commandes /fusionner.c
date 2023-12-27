@@ -7,7 +7,7 @@
 #define ECHEC 1
 char utilisateur[50];
 FILE *f3 = fopen("connecteur.txt", "r");
-    if (fichier == NULL) {
+    if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
     }
