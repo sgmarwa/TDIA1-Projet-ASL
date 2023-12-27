@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <regex.h>
-
+#include "loggin.h"
 #define ECHEC 1
 #define SUCES 0
 
@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
 void trouver(const char *pattern, const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
+        logMessage2("DEBUG","utilisation du commande <trouver>: fichier non trouvé",usr us );
         perror("Erreur lors de l'ouverture du fichier");
         exit(ECHEC);
     }
@@ -51,6 +52,6 @@ void trouver(const char *pattern, const char *filename) {
 
     // Libération de la mémoire utilisée par l'expression régulière
     regfree(&regex);
-
+ logMessage2("DEBUG","utilisation du commande <trouver>",usr us );
     fclose(file);
 }
