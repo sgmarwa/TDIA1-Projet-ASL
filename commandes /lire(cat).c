@@ -3,18 +3,18 @@
 #include "loggin.h"
 #include "usr.h"
 char utilisateur[50];
-FILE *f3 = fopen("connecteur.txt", "r");
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <nom_du_fichier>\n", argv[0]);
+        return EXIT_FAILURE;
+    }
+    FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
 fclose(f3);
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s <nom_du_fichier>\n", argv[0]);
-        return EXIT_FAILURE;
-    }
 
     const char *nom_fichier = argv[1];
     FILE *fichier = fopen(nom_fichier, "r");
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     while ((caractere = fgetc(fichier)) != EOF) {
         putchar(caractere);
     }
-logMessage2("DEBUG","utilisation du commande <lire>",usr us );
+logMessage2("DEBUG","utilisation du commande <lire>",utilisateur );
     fclose(fichier);
     return EXIT_SUCCESS;
 }
