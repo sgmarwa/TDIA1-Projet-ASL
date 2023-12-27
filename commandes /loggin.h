@@ -48,7 +48,7 @@ nombreLignes++;
     strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", timeinfo);
 
     // Écrire le message dans le fichier journal
-    fprintf(logFile, "[%d] %s :system: [%s] :%s%s\n", nombreLignes,type,timestamp,uti,message);
+    fprintf(logFile, "[%d] %s :system: [%s] :%s %s\n", nombreLignes,type,timestamp,uti,message);
     // Fermer le fichier journal
     fclose(logFile);
 }
