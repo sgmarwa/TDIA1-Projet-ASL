@@ -4,7 +4,6 @@
 #include <openssl/sha.h>
 #include "loggin.h"
 #include "usr.h"
-
 int hashPassword1(usr us, char *m_passe) {
     SHA256_CTX sha256;
     SHA256_Init(&sha256);
@@ -22,6 +21,8 @@ int hashPassword1(usr us, char *m_passe) {
 }
 
 int connecter(usr us) {
+    char utilisateur[50];
+    strcpy(utilisateur, source);
 FILE *f1 = fopen("connecteur.txt", "w");
     if (f1 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
@@ -43,13 +44,13 @@ FILE *f1 = fopen("connecteur.txt", "w");
             if (strcmp(us.nom_uti, partie_gauche) == 0) {
                 if (hashPassword1(us, mot_passe)) {
                     fclose(f);
-logMessage("INFO","authentification réussite ",us);
+logMessage("INFO","authentification réussite ",utilisateur);
 fprintf(f1,"%s",us.nom_uti);
 fclose(f1);
                     return 1;
                 } else {
                     fclose(f);
-logMessage("ERROR","FAILED TO CONNECT -->mot de passe erroné",us);
+logMessage("ERROR","FAILED TO CONNECT -->mot de passe erroné",utilisateur);
 
                     return 0;
                 }
@@ -58,7 +59,7 @@ logMessage("ERROR","FAILED TO CONNECT -->mot de passe erroné",us);
     }
 
     fclose(f);
-logMessage("ERROR","FAILED TO CONNECT -->nom utilisateur n'existe pas ",us);
+logMessage("ERROR","FAILED TO CONNECT -->nom utilisateur n'existe pas ",utilisateur);
     return 0;
 }
 
