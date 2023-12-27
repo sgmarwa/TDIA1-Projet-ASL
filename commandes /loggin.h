@@ -9,7 +9,6 @@ void logMessage(const char *type,const char *message,char *uti) {
 FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
-        return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
 fclose(f3);
@@ -58,7 +57,6 @@ void logMessage2(const char *type,const char *message,char *uti ) {
 FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
-        return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
 fclose(f3);
