@@ -5,6 +5,7 @@
 #include <limits.h>
 #include "chdf.h"
 #include "user.h"
+#include "loggin.h"
 // Structure pour stocker les informations de l'utilisateur
 /*typedef struct {
     char nom_uti[100];
@@ -77,6 +78,14 @@ int hashPassword1(usr us, char *m_passe) {
 
 // Fonction pour supprimer un utilisateur
 void supprimerUtilisateur(usr us) {
+	char utilisateur[50];
+	FILE *f3 = fopen("connecteur.txt", "r");
+    if (f3 == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return 1;
+    }
+fgets(utilisateur, sizeof(utilisateur), f3);
+fclose(f3);
 	char chemin_vers_fichier_Users[PATH_MAX];
 	construireCheminDuFichierUsers(chemin_vers_fichier_Users);
     FILE *f = fopen(chemin_vers_fichier_Users, "r");
@@ -102,9 +111,9 @@ char partie_gauche[300];
         if (sscanf(ligne, "%[^:]:%s", partie_gauche, mot_passe) == 2) {
             if (strcmp(us.nom_uti, partie_gauche) == 0) {
                 mot_de_passe_correct = hashPassword1(us, mot_passe);
-
                 if (!mot_de_passe_correct) {
                     printf("Mot de passe erroné.\n");
+	     logMessage("ERROR","erreur dans la suppression -->mot de passe erroné ",utilisateur);
                     fclose(f);
                     fclose(temp);
                     remove("temp.txt");
@@ -123,14 +132,25 @@ char partie_gauche[300];
         remove(chemin_vers_fichier_Users);
         rename(chemin_vers_fichier_Temp, chemin_vers_fichier_Users);
         printf("Utilisateur supprimé avec succès.\n");
+	logMessage("INFO","suppression réussite ",utilisateur);
+
     } else {
 printf("erreur le nom utilisateur n'existe pas\n");
+	    logMessage("ERROR","erreur dans la suppression -->nom d'utilisateur n'existe pas ",utilisateur);
         remove("temp.txt");
     }
 }
 
 // Fonction pour ajouter un nouvel utilisateur
 void ajouterUtilisateur(usr us) {
+	char utilisateur[50];
+	FILE *f3 = fopen("connecteur.txt", "r");
+    if (f3 == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return 1;
+    }
+fgets(utilisateur, sizeof(utilisateur), f3);
+fclose(f3);
 	char chemin_vers_fichier_Users[PATH_MAX];
 	construireCheminDuFichierUsers(chemin_vers_fichier_Users);
     FILE *f = fopen(chemin_vers_fichier_Users, "r");
@@ -146,6 +166,7 @@ void ajouterUtilisateur(usr us) {
         if (sscanf(ligne, "%[^:]", partie_gauche) == 1) {
             if (strcmp(us.nom_uti, partie_gauche) == 0) {
                 printf("L'utilisateur existe déjà.\n");
+		logMessage("ERROR","erreur dans l'ajout -->utilisateur déja existe ",utilisateur);
                 fclose(f);
                 return;
             }
@@ -156,6 +177,7 @@ void ajouterUtilisateur(usr us) {
     hashPassword(us);
     printf("Utilisateur ajouté avec succès.\n");
 //jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+	    logMessage("INFO","ajout avec succés ",utilisateur);
 	char chemin_vers_repertoire_home2[PATH_MAX];
 
 	construireCheminAbsoluRepHome2(chemin_vers_repertoire_home2);	
