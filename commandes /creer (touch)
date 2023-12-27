@@ -7,7 +7,7 @@
 #include <unistd.h> // Pour close
 #include <time.h>   // Pour time
 #include "loggin.h"
-
+#include "usr.h"
 int mytouch(const char *filename) {
     int fd;
     struct utimbuf new_times;
