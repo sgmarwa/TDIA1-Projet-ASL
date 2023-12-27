@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-
+#include "loggin.h"
 int main(int argc, char *argv[]) {
     // Vérifier le nombre d'arguments
     if (argc < 2 || argc > 3) {
@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
     // Vérifier si le fichier a pu être ouvert
     if (f == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
+         logMessage2("DEBUG","utilisation du commande <lister>: fichier non trouvé",usr us );
         return EXIT_FAILURE;
     }
 
@@ -48,6 +49,7 @@ int main(int argc, char *argv[]) {
     while (fgets(ligne, sizeof(ligne), f) != NULL) {
         i++;
         if (i > cmpt - nombre_lignes) {
+            logMessage2("DEBUG","utilisation du commande <lister>",usr us );
             printf("%s", ligne);
         }
     }
