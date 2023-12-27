@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "loggin.h"
+#include "usr.h"
 #define SUCCES 0
 #define ECHEC 1
 
