@@ -6,14 +6,6 @@
 
 #define ECHEC 1
 #define SUCES 0
-char utilisateur[50];
-FILE *f3 = fopen("connecteur.txt", "r");
-    if (f3 == NULL) {
-        perror("Erreur lors de l'ouverture du fichier");
-        return 1;
-    }
-fgets(utilisateur, sizeof(utilisateur), f3);
-fclose(f3);
 
 void affichepage(const char *nom_fichier);
 
@@ -31,6 +23,14 @@ int main(int argc, char *argv[]) {
 }
 
 void affichepage(const char *nom_fichier) {
+    char utilisateur[50];
+FILE *f3 = fopen("connecteur.txt", "r");
+    if (f3 == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return 1;
+    }
+fgets(utilisateur, sizeof(utilisateur), f3);
+fclose(f3);
     FILE *fichier = fopen(nom_fichier, "r");
     if (fichier == NULL) {
         logMessage2("DEBUG","utilisation du commande <afficherpage>: fichier non trouvé",utilisateur);
