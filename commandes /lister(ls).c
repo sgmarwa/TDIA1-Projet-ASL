@@ -9,11 +9,19 @@
 #define COLOR_RESET "\033[0m"
 #define COLOR_BLUE  "\033[34m"
 #define COLOR_GREEN "\033[32m"
+char utilisateur[50];
+FILE *f3 = fopen("connecteur.txt", "r");
+    if (fichier == NULL) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return 1;
+    }
+fgets(utilisateur, sizeof(utilisateur), f3);
+fclose(f3);
 
 void list_directory(const char *path) {
     DIR *dir = opendir(path);
     if (dir == NULL) {
-        logMessage2("DEBUG","utilisation du commande <lister>: fichier non trouvé",usr us );
+        logMessage2("DEBUG","utilisation du commande <lister>: fichier non trouvé",utilisateur );
         perror("Impossible d'ouvrir le répertoire");
         return;
     }
@@ -62,7 +70,7 @@ void list_directory(const char *path) {
     if (count != 0) {
         printf("\n");
     }
-logMessage1("DEBUG","utilisation du commande <lister>",usr us );
+logMessage1("DEBUG","utilisation du commande <lister>",utilisateur);
     closedir(dir);
 }
 
