@@ -8,11 +8,12 @@
 #define SUCES 0
 char utilisateur[50];
 FILE *f3 = fopen("connecteur.txt", "r");
-    if (fichier == NULL) {
+    if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
+fclose(f3);
 
 void affichepage(const char *nom_fichier);
 
@@ -60,6 +61,5 @@ void affichepage(const char *nom_fichier) {
     }
 logMessage2("DEBUG","utilisation du commande <afficherpage>",utilisateur);
     fclose(fichier);
-    fclose(f3);
 }
 
