@@ -22,7 +22,7 @@ int hashPassword1(usr us, char *m_passe) {
 
 int connecter(usr us) {
     char utilisateur[50];
-    strcpy(utilisateur, source);
+    strcpy(utilisateur,us.nom_uti);
 FILE *f1 = fopen("connecteur.txt", "w");
     if (f1 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
