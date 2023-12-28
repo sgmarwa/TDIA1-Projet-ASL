@@ -3,6 +3,8 @@
 #include <string.h>
 #include <time.h>
 #include "usr.h"
+#ifndef LOGGIN_H
+#define LOGGIN_H
 char utilisateur[50];
 // Fonction de journalisation
 void logMessage(const char *type,const char *message,char *uti) {
@@ -100,5 +102,5 @@ nombreLignes++;
     // Fermer le fichier journal
     fclose(logFile);
 }
-
+#endif // LOGGIN_H
 
