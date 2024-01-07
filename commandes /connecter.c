@@ -1,4 +1,4 @@
-#include <stdio.h>
+include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
@@ -6,8 +6,8 @@
 #include <openssl/sha.h>
 //#include "loggin.h"
 #include "chdf.h"
-#include "user.h"
-#include "connect2.h"
+#include "usr.h"
+#include "connect.h"
 #define TAILLE_MAX 100
 #define TAILLE_MAX2 100
 
