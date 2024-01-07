@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <openssl/sha.h>
@@ -189,4 +189,4 @@ int main(int argc, char *argv[]) {
         printf("Erreur : veuillez saisir -u pour ajouter utilisateur ou -d pour supprimer\n");
         return EXIT_FAILURE;
     }
-}
+}*/
