@@ -2,6 +2,7 @@
 #include <stdlib.h>
 //#include "loggin.h"
 #include "usr.h"
+#include "permissions.h"
 //char utilisateur[50];
 int main(int argc, char *argv[]) {
     FILE *source_file, *destination_file;
@@ -17,7 +18,15 @@ fgets(utilisateur, sizeof(utilisateur), f3);*/
         printf("Usage: %s <source> <destination>\n", argv[0]);
         return 1;
     }
-
+    int p1,p2,val=0;//variables pour les permissions
+    p1=permission(argv[1],val);
+    if(p1==0)
+            return 1;
+    else if(p1==3)
+            val=1;
+            p2=permission(argv[2],val);
+            if(p2==0)
+                    return 1;
     // Ouvre le fichier source en lecture
     source_file = fopen(argv[1], "r");
     if (source_file == NULL) {
