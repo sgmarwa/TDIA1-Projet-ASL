@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "loggin.h"
+//#include "loggin.h"
 #include "usr.h"
-char utilisateur[50];
+//char utilisateur[50];
 int main(int argc, char *argv[]) {
     FILE *source_file, *destination_file;
     char ch;
-FILE *f3 = fopen("connecteur.txt", "r");
+/*FILE *f3 = fopen("connecteur.txt", "r");
     if (f3== NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
     }
-fgets(utilisateur, sizeof(utilisateur), f3);
+fgets(utilisateur, sizeof(utilisateur), f3);*/
     // Vérifie le nombre d'arguments
     if (argc != 3) {
         printf("Usage: %s <source> <destination>\n", argv[0]);
@@ -21,7 +21,7 @@ fgets(utilisateur, sizeof(utilisateur), f3);
     // Ouvre le fichier source en lecture
     source_file = fopen(argv[1], "r");
     if (source_file == NULL) {
- logMessage2("DEBUG","utilisation du commande <copy>: fichier non trouvé",utilisateur );
+// logMessage2("DEBUG","utilisation du commande <copy>: fichier non trouvé",utilisateur );
         printf("Impossible d'ouvrir le fichier source '%s'\n", argv[1]);
         return 1;
     }
@@ -44,7 +44,7 @@ fgets(utilisateur, sizeof(utilisateur), f3);
     fclose(destination_file);
 
     printf("Le fichier '%s' a été copié vers '%s'\n", argv[1], argv[2]);
-     logMessage2("DEBUG","utilisation du commande <copy>: ",utilisateur);
-    fclose(f3);
+  //   logMessage2("DEBUG","utilisation du commande <copy>: ",utilisateur);
+  //  fclose(f3);
     return 0;
 }
