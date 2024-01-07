@@ -24,15 +24,15 @@ int main(int argc, char *argv[]) {
 }
 
 void trouver(const char *pattern, const char *filename) {
-    FILE *f3 = fopen("connecteur.txt", "r");
+/*    FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
-    }
+    } */
 fgets(utilisateur, sizeof(utilisateur),f3);
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        logMessage2("DEBUG","utilisation du commande <trouver>: fichier non trouvé",utilisateur );
+     //   logMessage2("DEBUG","utilisation du commande <trouver>: fichier non trouvé",utilisateur );
         perror("Erreur lors de l'ouverture du fichier");
         exit(ECHEC);
     }
@@ -59,7 +59,7 @@ fgets(utilisateur, sizeof(utilisateur),f3);
 
     // Libération de la mémoire utilisée par l'expression régulière
     regfree(&regex);
- logMessage2("DEBUG","utilisation du commande <trouver>", utilisateur);
+ // logMessage2("DEBUG","utilisation du commande <trouver>", utilisateur);
     fclose(file);
-    fclose(f3);
+//    fclose(f3);
 }
