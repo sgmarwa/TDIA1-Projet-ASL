@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include "loggin.h"
 #include "usr.h"
+#include "permissions.h"
 char utilisateur[50];
 int main(int argc, char *argv[]) {
     // Vérifier le nombre d'arguments
@@ -20,6 +21,10 @@ fclose(f3);*/
 
     // Déclarer et initialiser les variables
     const char *nom_fichier = argv[1];
+    //tester la permission:
+    if(permission(nom_fichier,0)==0){
+            return 1;
+    }
     FILE *f = fopen(nom_fichier, "r");
 
     // Vérifier si le fichier a pu être ouvert
