@@ -7,9 +7,14 @@
 #include <openssl/sha.h>
 #define TAILLE_MAX 100
 #define TAILLE_MAX2 100
-#include "crep.h"
+#include "crep3.h"
 #include "permissions.h"
 int main(int argc, char *argv[]) {
+    /*const char *chemin_utilisateur = argv[argc - 1];
+    if(permission(chemin_utilisateur)==0){
+                return EXIT_FAILURE;
+    }
+    else{*/
     int option;
     int opt_p = 0;
     int opt_m = 0;
@@ -42,13 +47,6 @@ int main(int argc, char *argv[]) {
         }
     }
     int i = optind;
-    const char chemin_utilisateur = argv[argc - 1];
-    int per=permission(chemin_utilisateur);
-    if(per==0){
-	    fprintf(stderr,"permission denied");
-	    return EXIT_FAILURE;
-    }
-    else{
     //si l'utilisateur a taper l'optin -m alors il doit entrer en premier parametre après le choix des option le mode de création des dossiers
     if(opt_m == 1){
 	    //tester le prochain parametre si c'est un mode valide ou non pour ne pas avoir des erreurs
@@ -72,15 +70,21 @@ int main(int argc, char *argv[]) {
 	strcat(chemin_vers_repertoire_home2,"grouprep/");
 	strcat(chemin_vers_repertoire_home2,argv[argc - 1]);
 	creerDossier(chemin_vers_repertoire_home2, mode);
-    	return 0;
+    	//goto ind;
+	//return 0;
     }
-    if(opt_p == 1){
-	creerDossier_p(path, mode);
-	return 0;
+    if(opt_p == 1){	    
+	int val1=0;
+	//les permissions sont dans la fonction par deffaut:
+	creerDossier_p(path, mode, &val1);
 	}
     //si l'user n'a pas saisi l'option 'p'
-    creerDossier(path, mode);
+    if(opt_g==0 && opt_p==0){
+	    //int val2=0;
+	    if(permission(path, 0)==0)
+		    return 1;
+	    creerDossier(path, mode);
+	    return 0;
+    }
     return 0;
-}
-return EXIT_SUCCESS;
 }
