@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <openssl/sha.h>
-#include "loggin.h"
+//#include "loggin.h"
 #include "user.h"
 //#include "chdf.h"
 int hashPassword1(usr us, char *m_passe) {
@@ -21,14 +21,14 @@ int hashPassword1(usr us, char *m_passe) {
     return strcmp(m_passe, hash_string) == 0;
 }
 
-int connecter(usr us) {
+/*int connecter(usr us) {
       char utilisateur[50];
     strcpy(utilisateur, us.nom_uti);
 FILE *f1 = fopen("connecteur.txt", "w");
     if (f1 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 0;
-    }
+    }*/
 
     char chemin_vers_fichier_utilisateurs[PATH_MAX];
         construireCheminDuFichierUsers(chemin_vers_fichier_utilisateurs);
@@ -47,12 +47,12 @@ FILE *f1 = fopen("connecteur.txt", "w");
             if (strcmp(us.nom_uti, partie_gauche) == 0) {
                 if (hashPassword1(us, mot_passe)) {
                     fclose(f);
-logMessage("INFO","authentification réussite ",utilisateur);
-fprintf(f1,"%s",us.nom_uti);
+//logMessage("INFO","authentification réussite ",utilisateur);
+//fprintf(f1,"%s",us.nom_uti);
                     return 1;
                 } else {
                     fclose(f);
-logMessage("ERROR","FAILED TO CONNECT -->mot de passe erroné",utilisateur);
+//logMessage("ERROR","FAILED TO CONNECT -->mot de passe erroné",utilisateur);
 
                     return 0;
                 }
@@ -61,6 +61,6 @@ logMessage("ERROR","FAILED TO CONNECT -->mot de passe erroné",utilisateur);
     }
 
     fclose(f);
-logMessage("ERROR","FAILED TO CONNECT -->nom utilisateur n'existe pas ",utilisateur);
+//logMessage("ERROR","FAILED TO CONNECT -->nom utilisateur n'existe pas ",utilisateur);
     return 0;
 }
