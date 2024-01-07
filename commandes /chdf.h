@@ -1,3 +1,4 @@
+//fichier qui contien des outils:
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -5,7 +6,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include "user.h"
+#include "usr.h"
 //structure du statut
 typedef struct info{
 	char sta[7];
@@ -33,10 +34,10 @@ info getStatut(const char *fichierStatut){
 	return in;
 }
 //saisie des infos (username et mdp):------------------------------------------------------------
-void saisir(usr *u){
+/*void saisir(usr *u){
 	printf("username:");
 	fgets(u->nom_uti,20,stdin);
-	// Supprimer le caractÃšre de nouvelle ligne ajoutÃ© par fgets
+	// Supprimer le caractere de nouvelle ligne ajouter par fgets
     	if (u->nom_uti[strlen(u->nom_uti) - 1] == '\n') {
         	u->nom_uti[strlen(u->nom_uti) - 1] = '\0';
     	}
@@ -47,7 +48,7 @@ void saisir(usr *u){
                 u->mot_de_passe[strlen(u->mot_de_passe) - 1] = '\0';
         }
 
-}
+}*/
 //saisir2:-----------------------------------------------------------------------------------
 /*void saisir2(usr *u,const char *nom_user_a_connecter){
         strcpy(u->nom_uti,nom_user_a_connecter);
@@ -60,7 +61,7 @@ void saisir(usr *u){
                 u->mot_de_passe[strlen(u->mot_de_passe) - 1] = '\0';
         }
 }*/
-void saisir2(usr *u, const char *nom_user_a_connecter) {
+/*void saisir2(usr *u, const char *nom_user_a_connecter) {
     strcpy(u->nom_uti, nom_user_a_connecter);
 
     printf("username: %s\n", u->nom_uti);
@@ -69,6 +70,31 @@ void saisir2(usr *u, const char *nom_user_a_connecter) {
 
     fgets(u->mot_de_passe, sizeof(u->mot_de_passe), stdin);
 
+    // Supprimer le caractÃšre de nouvelle ligne ajoutÃ© par fgets
+    size_t len = strlen(u->mot_de_passe);
+    if (len > 0 && u->mot_de_passe[len - 1] == '\n') {
+        u->mot_de_passe[len - 1] = '\0';
+    }
+}*/
+void saisir(usr *u){
+        printf("username:");
+        fgets(u->nom_uti,20,stdin);
+        // Supprimer le caractere de nouvelle ligne ajouter par fgets
+        if (u->nom_uti[strlen(u->nom_uti) - 1] == '\n') {
+                u->nom_uti[strlen(u->nom_uti) - 1] = '\0';
+        }
+        char *password = getpass("password: ");
+        strcpy(u->mot_de_passe,password);
+        //printf("password:");
+        //fgets(u->mot_de_passe,strlen(u->mot_de_passe),stdin);
+        // Supprimer le caractÃšre de nouvelle ligne ajoutÃ© par fgets
+        //if (u->mot_de_passe[strlen(u->mot_de_passe) - 1] == '\n') {
+                //u->mot_de_passe[strlen(u->mot_de_passe) - 1] = '\0';
+}
+void saisir2(usr *u, const char *nom_user_a_connecter) {
+    strcpy(u->nom_uti, nom_user_a_connecter);
+    char *password = getpass("password: ");
+        strcpy(u->mot_de_passe,password);
     // Supprimer le caractÃšre de nouvelle ligne ajoutÃ© par fgets
     size_t len = strlen(u->mot_de_passe);
     if (len > 0 && u->mot_de_passe[len - 1] == '\n') {
@@ -100,35 +126,7 @@ int changeStatut(int statu, usr u,const char *fichierStatut){
 	fclose(f);
 	return 1;
 }
-/*//extraire l'admin de la liste-----------------------------------------------------------------------------------------------
-usr adminlist(const char *fichierUsers){
-	FILE *f=fopen(fichierUsers,"rb");
-        if(f==NULL){
-                perror("erreur lors de l'ouverture du fichier de statut");
-                exit(1);//sortir avec une erreur
-        }
-	userr u;
-	fread(&u,sizeof(userr),1,f);//lire la premiere ligne
-	fclose(f);
-	return u;
-}*/
-//verifier l'existance d'un utilisateur:
-/*int verifierexistance(const char *nuser, const char *fichierUsers){
-	FILE *f=fopen(fichierUsers,"rb");
-        if(f==NULL){
-                perror("erreur lors de l'ouverture du fichier de statut");
-                exit(1);//sortir avec une erreur
-        }
-	userr tmp;
-	while(fread(&tmp,sizeof(userr),1,f)==1){
-			if(strcmp(tmp.username,nuser)==0){
-			fclose(f);
-			return 1;
-			}
-	}
-	fclose(f);
-	return 0;
-}*/
+//diviser un chemin en mot et fair revenire le nombre de mots contenus dans le chemin:
 void diviserCheminEnMots(char *chemin, char mots[][50], int *nombreDeMots, const char *delimiteur) {
     // Utilisation de la fonction strtok pour diviser le chemin en mots
     char *token = strtok(chemin, delimiteur);
@@ -140,6 +138,15 @@ void diviserCheminEnMots(char *chemin, char mots[][50], int *nombreDeMots, const
         strcpy(mots[*nombreDeMots], token);
         (*nombreDeMots)++;
         token = strtok(NULL, delimiteur);
+    }
+}
+//verifier l'existance d'un chemin (fichier/dossier):
+int verifier_existance(const char *chemin){
+    // Utilisez access pour vérifier l'existence du chemin
+    if (access(chemin, F_OK) != -1) {
+        return 1;
+    } else {
+        return -1;
     }
 }
 //fonction qui construit le chemin vers le repertoire ou on va stocker la statu et l'utilisateurs connectÃ©.
