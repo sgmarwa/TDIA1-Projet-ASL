@@ -8,20 +8,20 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Usage: %s <nom_du_fichier>\n", argv[0]);
         return EXIT_FAILURE;
     }
-    FILE *f3 = fopen("connecteur.txt", "r");
+ /*   FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
-fclose(f3);
+fclose(f3); */
 
     const char *nom_fichier = argv[1];
     FILE *fichier = fopen(nom_fichier, "r");
 
     if (fichier == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
-        logMessage2("DEBUG","utilisation du commande <lire>: fichier non trouvé",utilisateur);
+    //    logMessage2("DEBUG","utilisation du commande <lire>: fichier non trouvé",utilisateur);
         return EXIT_FAILURE;
     }
 
@@ -29,7 +29,7 @@ fclose(f3);
     while ((caractere = fgetc(fichier)) != EOF) {
         putchar(caractere);
     }
-logMessage2("DEBUG","utilisation du commande <lire>",utilisateur );
+//logMessage2("DEBUG","utilisation du commande <lire>",utilisateur );
     fclose(fichier);
     return EXIT_SUCCESS;
 }
