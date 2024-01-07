@@ -12,17 +12,17 @@
 char utilisateur[50];
 
 void list_directory(const char *path) {
-    FILE *f3 = fopen("connecteur.txt", "r");
+/*    FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
-fclose(f3);
+fclose(f3); */
 
     DIR *dir = opendir(path);
     if (dir == NULL) {
-        logMessage2("DEBUG","utilisation du commande <lister>: fichier non trouvé",utilisateur );
+    //    logMessage2("DEBUG","utilisation du commande <lister>: fichier non trouvé",utilisateur );
         perror("Impossible d'ouvrir le répertoire");
         return;
     }
@@ -71,7 +71,7 @@ fclose(f3);
     if (count != 0) {
         printf("\n");
     }
-logMessage2("DEBUG","utilisation du commande <lister>",utilisateur);
+// logMessage2("DEBUG","utilisation du commande <lister>",utilisateur);
     closedir(dir);
 }
 
