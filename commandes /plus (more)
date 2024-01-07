@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "loggin.h"
 #include "usr.h"
+#include "permissions.h"
 #define PAGE_SIZE 20 // Nombre de lignes par page
 char utilisateur[50];
 void mymore(FILE *fp) {
@@ -37,7 +38,10 @@ int main(int argc, char *argv[]) {
         printf("Usage: %s file_name\n", argv[0]);
         return 1;
     }
-
+//permissions:
+    if(permission(argv[1],0)==0){
+            return 1;
+    }
     file = fopen(argv[1], "r");
     if (file == NULL) {
         printf("Impossible d'ouvrir le fichier.\n");
