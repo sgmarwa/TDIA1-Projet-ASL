@@ -10,13 +10,13 @@ int main(int argc, char *argv[]) {
         printf("Usage: %s <nom fichier> [-n]\n", argv[0]);
         return EXIT_FAILURE;
     }
-FILE *f3 = fopen("connecteur.txt", "r");
+/*FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
-fclose(f3);
+fclose(f3);*/
 
     // Déclarer et initialiser les variables
     const char *nom_fichier = argv[1];
@@ -25,7 +25,7 @@ fclose(f3);
     // Vérifier si le fichier a pu être ouvert
     if (f == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
-         logMessage2("DEBUG","utilisation du commande <lister>: fichier non trouvé",utilisateur );
+      //   logMessage2("DEBUG","utilisation du commande <lister>: fichier non trouvé",utilisateur );
         return EXIT_FAILURE;
     }
 
@@ -61,7 +61,7 @@ fclose(f3);
             printf("%s", ligne);
         }
     }
-logMessage2("DEBUG","utilisation du commande <lister>",utilisateur );
+// logMessage2("DEBUG","utilisation du commande <lister>",utilisateur );
     // Fermer le fichier après utilisation
     fclose(f);
     return 0;
