@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "loggin.h"
 #include "usr.h"
+#include "permissions.h"
 #define TAILLE_PAGE 20
 
 #define ECHEC 1
@@ -16,7 +17,10 @@ int main(int argc, char *argv[]) {
     }
 
     const char *nom_fichier = argv[1];
-
+    //tester la permission:
+    if(permission(nom_fichier,0)==0){
+            return 1;
+    }
     affichepage(nom_fichier);
 
     return SUCES;
