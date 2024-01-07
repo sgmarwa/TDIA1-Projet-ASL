@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "loggin.h"
 #include "usr.h"
+#include "permissions.h"
 char utilisateur[50];
 int main(int argc, char *argv[]) {
     if (argc != 2) {
@@ -17,6 +18,11 @@ fgets(utilisateur, sizeof(utilisateur), f3);
 fclose(f3); */
 
     const char *nom_fichier = argv[1];
+    //permissions:------
+    if(permission(nom_fichier,0)==0){
+            return 1;
+    }
+    //------
     FILE *fichier = fopen(nom_fichier, "r");
 
     if (fichier == NULL) {
