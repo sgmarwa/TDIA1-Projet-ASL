@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "loggin.h"
 #include "usr.h"
+#include "permissions.h"
 #define SUCCES 0
 #define ECHEC 1
 char utilisateur[50];
@@ -37,7 +38,9 @@ int main(int argc, char *argv[]) {
     const char *nomFichier = argv[1];
     const char *motifRecherche = argv[2];
     const char *motifRemplacement = argv[3];
-
+if(permission(nomFichier,0)==0){
+            return 1;
+    }
     int resultat = remplacerMotif(nomFichier, motifRecherche, motifRemplacement);
 
     if (resultat == SUCCES) {
