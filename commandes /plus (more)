@@ -4,16 +4,16 @@
 #define PAGE_SIZE 20 // Nombre de lignes par page
 char utilisateur[50];
 void mymore(FILE *fp) {
-FILE *f3 = fopen("connecteur.txt", "r");
+/*FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
-fclose(f3);
+fclose(f3);*/
     int line_count = 0;
     char ch;
-    logMessage2("DEBUG","utilisation du commande <plus>",utilisateur);
+   // logMessage2("DEBUG","utilisation du commande <plus>",utilisateur);
     while ((ch = fgetc(fp)) != EOF) {
         putchar(ch);
 
