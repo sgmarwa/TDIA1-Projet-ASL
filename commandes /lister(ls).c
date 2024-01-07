@@ -6,6 +6,7 @@
 #include <sys/ioctl.h>
 #include "loggin.h"
 #include "usr.h"
+#include "permissions.h"
 #define COLOR_RESET "\033[0m"
 #define COLOR_BLUE  "\033[34m"
 #define COLOR_GREEN "\033[32m"
@@ -83,7 +84,9 @@ int main(int argc, char *argv[]) {
 
     char chemin[PATH_MAX];
     strcpy(chemin, argv[1]);
-
+    //permissions:
+    if(permission(chemin,0)==0)
+		return 1;
     // Ajouter un '/' à la fin du chemin si ce n'est pas déjà le cas
     if (chemin[strlen(chemin) - 1] != '/') {
         strcat(chemin, "/");
