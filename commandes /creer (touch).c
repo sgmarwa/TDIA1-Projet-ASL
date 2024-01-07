@@ -6,17 +6,17 @@
 #include <utime.h>
 #include <unistd.h> // Pour close
 #include <time.h>   // Pour time
-#include "loggin.h"
+//#include "loggin.h"
 #include "usr.h"
 char utilisateur[50];
 int mytouch(const char *filename) {
-FILE *f3 = fopen("connecteur.txt", "r");
+/*FILE *f3 = fopen("connecteur.txt", "r");
     if (f3 == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
         return 1;
     }
 fgets(utilisateur, sizeof(utilisateur), f3);
-fclose(f3);
+fclose(f3);*/
     int fd;
     struct utimbuf new_times;
 
@@ -26,7 +26,7 @@ fclose(f3);
         perror("open");
         return 1;
     }
-    logMessage2("DEBUG","utilisation du commande <creer>",utilisateur);
+  //  logMessage2("DEBUG","utilisation du commande <creer>",utilisateur);
     // Ferme le fichier
     close(fd);
 
